@@ -10,10 +10,17 @@
 		6459F3A81A81CAE1001F7656 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3A71A81CAE1001F7656 /* main.m */; };
 		6459F3AB1A81CAE1001F7656 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3AA1A81CAE1001F7656 /* AppDelegate.m */; };
 		6459F3AE1A81CAE1001F7656 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3AD1A81CAE1001F7656 /* ViewController.m */; };
-		6459F3B11A81CAE1001F7656 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3AF1A81CAE1001F7656 /* Main.storyboard */; };
 		6459F3B31A81CAE1001F7656 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3B21A81CAE1001F7656 /* Images.xcassets */; };
 		6459F3B61A81CAE1001F7656 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3B41A81CAE1001F7656 /* LaunchScreen.xib */; };
 		6459F3C21A81CAE1001F7656 /* Laboratorio3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3C11A81CAE1001F7656 /* Laboratorio3Tests.m */; };
+		6459F3CC1A81CB0F001F7656 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6459F3CB1A81CB0F001F7656 /* libsqlite3.dylib */; };
+		6459F3CF1A81CC09001F7656 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3CE1A81CC09001F7656 /* DBManager.m */; };
+		6459F3D11A81EA31001F7656 /* DBLaboratorio3.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3D01A81EA31001F7656 /* DBLaboratorio3.sqlite */; };
+		6459F3D71A81EFBA001F7656 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3D61A81EFBA001F7656 /* add.png */; };
+		6459F3DC1A81F1EC001F7656 /* EditInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F3DB1A81F1EC001F7656 /* EditInfoViewController.m */; };
+		6459F3E01A82F1FB001F7656 /* camara.png in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3DF1A82F1FB001F7656 /* camara.png */; };
+		6459F3E21A82F25C001F7656 /* finder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6459F3E11A82F25C001F7656 /* finder.png */; };
+		6459F4171A832374001F7656 /* YoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6459F4161A832374001F7656 /* YoutubeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +41,22 @@
 		6459F3AA1A81CAE1001F7656 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6459F3AC1A81CAE1001F7656 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6459F3AD1A81CAE1001F7656 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6459F3B01A81CAE1001F7656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6459F3B21A81CAE1001F7656 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6459F3B51A81CAE1001F7656 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6459F3BB1A81CAE1001F7656 /* Laboratorio3Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Laboratorio3Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6459F3C01A81CAE1001F7656 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6459F3C11A81CAE1001F7656 /* Laboratorio3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Laboratorio3Tests.m; sourceTree = "<group>"; };
+		6459F3CB1A81CB0F001F7656 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		6459F3CD1A81CC09001F7656 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManager.h; path = SQLite3DB/DBManager.h; sourceTree = "<group>"; };
+		6459F3CE1A81CC09001F7656 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = SQLite3DB/DBManager.m; sourceTree = "<group>"; };
+		6459F3D01A81EA31001F7656 /* DBLaboratorio3.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = DBLaboratorio3.sqlite; path = ../../../DBSQLite/DBLaboratorio3.sqlite; sourceTree = "<group>"; };
+		6459F3D61A81EFBA001F7656 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add.png; path = ../../add.png; sourceTree = "<group>"; };
+		6459F3DA1A81F1EC001F7656 /* EditInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInfoViewController.h; sourceTree = "<group>"; };
+		6459F3DB1A81F1EC001F7656 /* EditInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInfoViewController.m; sourceTree = "<group>"; };
+		6459F3DF1A82F1FB001F7656 /* camara.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camara.png; path = ../../camara.png; sourceTree = "<group>"; };
+		6459F3E11A82F25C001F7656 /* finder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = finder.png; path = ../../finder.png; sourceTree = "<group>"; };
+		6459F4151A832374001F7656 /* YoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeViewController.h; sourceTree = "<group>"; };
+		6459F4161A832374001F7656 /* YoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6459F3CC1A81CB0F001F7656 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +81,10 @@
 		6459F3991A81CAE1001F7656 = {
 			isa = PBXGroup;
 			children = (
+				6459F3CD1A81CC09001F7656 /* DBManager.h */,
+				6459F3CE1A81CC09001F7656 /* DBManager.m */,
+				6459F3D01A81EA31001F7656 /* DBLaboratorio3.sqlite */,
+				6459F3CB1A81CB0F001F7656 /* libsqlite3.dylib */,
 				6459F3A41A81CAE1001F7656 /* Laboratorio3 */,
 				6459F3BE1A81CAE1001F7656 /* Laboratorio3Tests */,
 				6459F3A31A81CAE1001F7656 /* Products */,
@@ -81,14 +103,20 @@
 		6459F3A41A81CAE1001F7656 /* Laboratorio3 */ = {
 			isa = PBXGroup;
 			children = (
+				6459F3B21A81CAE1001F7656 /* Images.xcassets */,
+				6459F3E11A82F25C001F7656 /* finder.png */,
+				6459F3DF1A82F1FB001F7656 /* camara.png */,
+				6459F3D61A81EFBA001F7656 /* add.png */,
 				6459F3A91A81CAE1001F7656 /* AppDelegate.h */,
 				6459F3AA1A81CAE1001F7656 /* AppDelegate.m */,
 				6459F3AC1A81CAE1001F7656 /* ViewController.h */,
 				6459F3AD1A81CAE1001F7656 /* ViewController.m */,
-				6459F3AF1A81CAE1001F7656 /* Main.storyboard */,
-				6459F3B21A81CAE1001F7656 /* Images.xcassets */,
 				6459F3B41A81CAE1001F7656 /* LaunchScreen.xib */,
 				6459F3A51A81CAE1001F7656 /* Supporting Files */,
+				6459F3DA1A81F1EC001F7656 /* EditInfoViewController.h */,
+				6459F3DB1A81F1EC001F7656 /* EditInfoViewController.m */,
+				6459F4151A832374001F7656 /* YoutubeViewController.h */,
+				6459F4161A832374001F7656 /* YoutubeViewController.m */,
 			);
 			path = Laboratorio3;
 			sourceTree = "<group>";
@@ -199,9 +227,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6459F3B11A81CAE1001F7656 /* Main.storyboard in Resources */,
+				6459F3D11A81EA31001F7656 /* DBLaboratorio3.sqlite in Resources */,
 				6459F3B61A81CAE1001F7656 /* LaunchScreen.xib in Resources */,
+				6459F3D71A81EFBA001F7656 /* add.png in Resources */,
+				6459F3E01A82F1FB001F7656 /* camara.png in Resources */,
 				6459F3B31A81CAE1001F7656 /* Images.xcassets in Resources */,
+				6459F3E21A82F25C001F7656 /* finder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +250,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6459F3DC1A81F1EC001F7656 /* EditInfoViewController.m in Sources */,
 				6459F3AE1A81CAE1001F7656 /* ViewController.m in Sources */,
 				6459F3AB1A81CAE1001F7656 /* AppDelegate.m in Sources */,
 				6459F3A81A81CAE1001F7656 /* main.m in Sources */,
+				6459F4171A832374001F7656 /* YoutubeViewController.m in Sources */,
+				6459F3CF1A81CC09001F7656 /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +278,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6459F3AF1A81CAE1001F7656 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6459F3B01A81CAE1001F7656 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6459F3B41A81CAE1001F7656 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

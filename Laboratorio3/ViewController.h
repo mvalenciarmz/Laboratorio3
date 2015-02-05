@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditInfoViewController.h"
 
 @interface ViewController : UIViewController
 
+// Propiedades
+@property (weak, nonatomic) IBOutlet UITableView *tblDatos;
+
+
+// Acciones
+- (IBAction)addNewRecord:(id)sender;
 
 @end
 
