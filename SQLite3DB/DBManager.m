@@ -112,6 +112,8 @@
         // Cargamos todos los datos de la BD a memoria
         BOOL prepareStatementResult = sqlite3_prepare_v2(sqlite3Database, query, -1, &compiledStatement, NULL);
         
+        //NSLog(@"%s", query);
+        
         if (prepareStatementResult == SQLITE_OK) {
             
             // Checamos si es una consulta no-ejecutable (select)
@@ -131,11 +133,15 @@
                     // Obtenemos el total de columnas
                     int totalColumns = sqlite3_column_count(compiledStatement);
                     
+                    //NSLog(@"El total de columnas es : %i", totalColumns);
+                    
                     // Columna por columna obtenemos los datos
-                    for (int i=0; i<totalColumns; i++) {
+                    // La ultima SIEMPRE sera la foto en el select, por lo que aqui recorremos totalColumns -1 para que NO incluya la foto en esta seccion
+                    for (int i=0; i<totalColumns -1; i++) {
                         
-                        // Convertimos los datos en texto
+                        // Obtenemos el valor de la columna (campo)
                         char *dbDataAsChars = (char *)sqlite3_column_text(compiledStatement, i);
+                        //NSLog(@"El valor de la columna %i es : %s", i, dbDataAsChars);
                         
                         // Si existe informaciòn en el campo lo adicionamos en el array actual
                         if (dbDataAsChars != NULL) {
@@ -148,9 +154,27 @@
                         // Guardamos tambien el nombre de la columna
                         if (self.arrColumnNames.count != totalColumns) {
                             dbDataAsChars = (char *)sqlite3_column_name(compiledStatement, i);
+                            //NSLog(@"El nombre de la columna %i es : %s", i, dbDataAsChars);
                             [self.arrColumnNames addObject:[NSString stringWithUTF8String:dbDataAsChars]];
                         }
                     }
+                    
+                    // Ahora cargamos la foto, que SIEMPRE sera la ultima columna del SELECT
+                    totalColumns = totalColumns-1;
+                    // 1. Grabamos en el array de datos la imagen
+                    if (sqlite3_column_blob(compiledStatement, totalColumns) != NULL) {
+                        NSData *dataimg = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, totalColumns) length:sqlite3_column_bytes(compiledStatement, totalColumns)];
+                        [arrDataRow addObject:dataimg];
+                    } else {
+                        [arrDataRow addObject:@""];
+                        //(@"el campo %i de FOTO no trae nada", totalColumns);
+                    }
+                    
+                    // 2. Y obviamente, guardamos tambien el nombre de la columna
+                    char *dbDataAsChars = (char *)sqlite3_column_name(compiledStatement, totalColumns);
+                    //NSLog(@"el campo para la foto se llama : %s", dbDataAsChars);
+                    [self.arrColumnNames addObject:[NSString stringWithUTF8String:dbDataAsChars]];
+                    
                     
                     // Guardamos cada registro en el array... siempre y cuando exista información
                     if (arrDataRow.count > 0) {
@@ -231,6 +255,57 @@
         
     }
     return self;
+}
+
+
+// Para la imagen
+
+// Para grabarla en la base de datos ( ya tiene que existir el registro, asi que es un update siempre, aun cuando estemos dando de alta, ya que los datos se insertaron anteriormene :(    )
+- (BOOL) guardaFoto:(NSData*)foto id:(NSString *) id {
+
+    //NSLog(@"foto vale : %@", foto);
+    
+    // Creamos un objeto sqlite
+    sqlite3 *sqlite3Database;
+    
+    // Determinamos la ruta del archivo de BD
+    NSString *databasePath = [self.documentsDirectory stringByAppendingPathComponent:self.databaseFilename];
+    
+    // Abrimos la BD
+    BOOL openDatabaseResult = sqlite3_open([databasePath UTF8String], &sqlite3Database);
+    
+    if(openDatabaseResult == SQLITE_OK) {
+        
+        const char* sqliteQuery = "UPDATE datos SET foto = ? WHERE id = ?";
+        sqlite3_stmt* statement;
+            
+        if( sqlite3_prepare_v2(sqlite3Database, sqliteQuery, -1, &statement, NULL) == SQLITE_OK ){
+
+            sqlite3_bind_blob(statement, 1, [foto bytes], (int) [foto length], SQLITE_TRANSIENT);
+            sqlite3_bind_text(statement, 2, [id UTF8String], -1, SQLITE_TRANSIENT);
+            
+            if (sqlite3_step(statement) == SQLITE_DONE){
+            
+                sqlite3_reset(statement);
+                NSLog(@"La imagen ha sido guardada");
+                return YES;
+                
+            }else{
+                
+                // Si hubo un error lo mostramos
+                NSLog(@"El Error al guardar la imagen : %s", sqlite3_errmsg(sqlite3Database));
+                return NO;
+            }
+            
+        } else {
+            
+            NSLog(@"Registro FALLO (%s)", sqlite3_errmsg(sqlite3Database));
+            sqlite3_reset(statement);
+            return NO;
+        
+        }
+    }
+    return NO;
 }
 
 

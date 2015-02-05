@@ -25,5 +25,8 @@
 
 -(void)executeQuery:(NSString *)query;
 
+// Para grabar la imagen, tomado del còdigo de gosh
+-(BOOL)guardaFoto:(NSData*)foto id:(NSString *) id;
+
 
 @end

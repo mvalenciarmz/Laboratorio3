@@ -77,7 +77,7 @@
 -(void)loadData{
     
     // Armamos la consulta
-    NSString *query = @"select * from datos order by nombre";
+    NSString *query = @"select id, nombre, animo, link, foto from datos order by nombre";
     
     // Limpiamos el array y cargamos los datos
     if (self.arrDatos != nil) {

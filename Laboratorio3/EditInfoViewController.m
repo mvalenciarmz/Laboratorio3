@@ -101,7 +101,7 @@
         NSString *query;
         
         if (self.recordIDToEdit == -1) {
-            query = [NSString stringWithFormat:@"insert into datos( id, nombre, animo, link, foto ) values(null, '%@', '%@', '%@', nil)", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text ];
+            query = [NSString stringWithFormat:@"insert into datos( id, nombre, animo, link, foto ) values(null, '%@', '%@', '%@', null)", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text ];
             
         } else {
             query = [NSString stringWithFormat:@"update datos set nombre='%@', animo='%@', link='%@' where id=%d", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text, self.recordIDToEdit ];
@@ -113,14 +113,23 @@
         // Ejecutamos la consulta
         [self.dbManager executeQuery:query];
     
-    
         // Como no encontrè como grabar dentro del mismo insert o update usando executeQuery, lo hacemos por separado usando prepared statements solo para la imagen
-    
-    
-    
+        UIImage *image = [self.imgFoto image];
+        NSData  *imageData = UIImagePNGRepresentation(image);
+        
+        // Si es un ALTA usamos el ultimo id generado por la base de datos
+        if (self.recordIDToEdit == -1) {
+            [self.dbManager guardaFoto:imageData id:[NSString stringWithFormat:@"%lld", self.dbManager.lastInsertedRowID]];
+        // Si es un CAMBIO, ya sabemos y esta en otra variable el id que estamos modificando
+        } else {
+            [self.dbManager guardaFoto:imageData id:[NSString stringWithFormat:@"%d", self.recordIDToEdit ]];
+        }
+
         // Si la consulta fué exitosa, regresamos al view controller principal
         if (self.dbManager.affectedRows != 0) {
             NSLog(@"Consulta exitosa. Affected rows = %d", self.dbManager.affectedRows);
+            
+            NSLog(@"%lld", self.dbManager.lastInsertedRowID );
         
             // Informa al "delegate" que la ediciòn ha terminado
             [self.delegate editingInfoWasFinished];
@@ -139,17 +148,26 @@
 -(void)loadInfoToEdit{
     
     // Armamos la consulta para extraer la informacion
-    NSString *query = [NSString stringWithFormat:@"select * from datos where id = %d", self.recordIDToEdit];
+    NSString *query = [NSString stringWithFormat:@"select id, nombre, animo, link, foto from datos where id = %d", self.recordIDToEdit];
     
     // Cargamos los datos a un array
     NSArray *results = [[NSArray alloc] initWithArray:[self.dbManager loadDataFromDB:query]];
+    
+    //NSLog(@"el campo foto vale : %@", [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"foto"]]);
+    
+    //NSLog(@"%@", results);
     
     // Y los asignamos a los campos de texto
     self.txtNombre.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"nombre"]];
     self.txtAnimo.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"animo"]];
     self.txtLink.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"link"]];
     
-    // Para la variable
+    // Por si no trae foto, para que no truene ...
+    if ( [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"foto"]] != @"" ) {
+        self.imgFoto.image = [UIImage imageWithData:[[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"foto"]] ];
+    }
+    
+    // Para la variable que usaremos al mostrar el video de youtube, aqui guardamos la url del video
     strLink = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"link"]];
     
 }
