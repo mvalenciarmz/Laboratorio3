@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "EditInfoViewController.h"
 
+// Para compartir socialmente en facebook, twitter y lo que se acumule en la semana
+#import <Accounts/Accounts.h>
+#import <Social/Social.h>
+#import <Twitter/Twitter.h> 
+
+
 @interface ViewController : UIViewController
 
 // Propiedades
@@ -18,6 +24,7 @@
 
 // Acciones
 - (IBAction)addNewRecord:(id)sender;
+- (IBAction)btnCompartir:(id)sender;
 
 @end
 

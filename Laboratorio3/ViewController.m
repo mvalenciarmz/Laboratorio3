@@ -9,6 +9,10 @@
 #import "ViewController.h"
 #import "DBManager.h"
 
+
+// Para saber la lìnea actualmente seleccionada, y compartir en twitter o facebook los datos de dicha linea
+NSIndexPath * currentRow;
+
 @interface ViewController ()
 
 @property (nonatomic, strong) DBManager *dbManager;
@@ -69,6 +73,37 @@
     
     // mostramos la pantalla desde donde podremos dar de alta/ver/editar un registro
     [self performSegueWithIdentifier:@"idSegueEditInfo" sender:self];
+    
+}
+
+- (IBAction)btnCompartir:(id)sender {
+    
+    /*
+     
+    UIAlertView *messageAlert = [[UIAlertView alloc]
+                                 initWithTitle:@"COMPARTIR"
+                                 message:[[self.arrDatos objectAtIndex:currentRow.row] objectAtIndex:1]
+                                 delegate:nil
+                                 cancelButtonTitle:@"OK"
+                                 otherButtonTitles:nil];
+    
+    // Display Alert Message
+    [messageAlert show];
+    */
+    
+    
+    NSString *strMsg;
+    NSArray *activityItems;
+    UIImage *imgShare;
+    UIActivityViewController *actVC;
+    imgShare = [UIImage imageWithData:[[self.arrDatos objectAtIndex:currentRow.row] objectAtIndex:4]];
+    strMsg = @"Hola desde mi clase de iOS de la UAG en Oaxaca =)";
+    activityItems = @[imgShare, strMsg];
+    //Init activity view controller
+    actVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    actVC.excludedActivityTypes = [NSArray arrayWithObjects:UIActivityTypePrint, UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard, UIActivityTypeAirDrop, nil];
+    [self presentViewController:actVC animated:YES completion:nil];
+    
     
 }
 
@@ -169,6 +204,13 @@
     
 }
 
+
+// Cuando seleccionen una linea, guardamos la linea seleccionada
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    currentRow = indexPath;
+    
+}
 
 // En esta seccion confirmaremos que quieren borrar el registro y aqui en donde realmente se realiza el borrado
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

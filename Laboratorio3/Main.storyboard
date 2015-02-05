@@ -50,11 +50,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Laboratorio 3" id="bbt-JZ-t8R">
-                        <barButtonItem key="backBarButtonItem" title="Regresar" id="9PW-3b-hil"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="9PW-3b-hil"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="add" id="Li6-Dj-k4G">
                             <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addNewRecord:" destination="vXZ-lx-hvc" id="xa7-u0-iGc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="r9v-dQ-cYW">
+                            <connections>
+                                <action selector="btnCompartir:" destination="vXZ-lx-hvc" id="d7r-QO-JyX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
