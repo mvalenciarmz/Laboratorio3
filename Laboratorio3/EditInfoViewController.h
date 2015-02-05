@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+NSString *strLink;
 
 // Para delegar y avisar que se modifico / adiciono un registro y que debe regrescarse la tabla al volver a la pantalla principal
 @protocol EditInfoViewControllerDelegate
@@ -33,6 +34,8 @@
 // Para la foto
 @property (weak, nonatomic) IBOutlet UIImageView *imgFoto;
 
+// para poder ocultarlo cuando se trate de un alta
+@property (weak, nonatomic) IBOutlet UIButton *btnMostrarVideo;
 
 
 // Como usaremos la misma pantalla para dar de alta que para editar, en ésta variable guardaremos el ID de un registro ya existente

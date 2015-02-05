@@ -79,25 +79,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre completo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-Sn-0uv">
-                                <rect key="frame" x="16" y="350" width="288" height="30"/>
+                                <rect key="frame" x="16" y="308" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Estado de ánimo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h52-4w-8U1">
-                                <rect key="frame" x="16" y="394" width="288" height="30"/>
+                                <rect key="frame" x="16" y="346" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link de youtube (video)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pG-1G-SbG">
-                                <rect key="frame" x="16" y="442" width="288" height="30"/>
+                                <rect key="frame" x="16" y="384" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FQ3-hw-rR8">
-                                <rect key="frame" x="16" y="95" width="174" height="217"/>
+                                <rect key="frame" x="16" y="72" width="174" height="217"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDe-L8-l18">
-                                <rect key="frame" x="211" y="102" width="93" height="90"/>
+                                <rect key="frame" x="211" y="72" width="93" height="90"/>
                                 <state key="normal" image="camara.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -106,7 +106,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0a-Uv-HWo">
-                                <rect key="frame" x="222" y="218" width="82" height="94"/>
+                                <rect key="frame" x="222" y="175" width="82" height="94"/>
                                 <state key="normal" image="finder.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMW-ac-Btf">
-                                <rect key="frame" x="206" y="480" width="98" height="30"/>
+                                <rect key="frame" x="206" y="422" width="98" height="30"/>
                                 <state key="normal" title="Mostrar Video">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -139,6 +139,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="animo" destination="h52-4w-8U1" id="258-nc-vun"/>
+                        <outlet property="btnMostrarVideo" destination="RMW-ac-Btf" id="0QR-IR-Vgb"/>
                         <outlet property="imgFoto" destination="FQ3-hw-rR8" id="qTl-6r-1JJ"/>
                         <outlet property="link" destination="3pG-1G-SbG" id="ymt-qw-6sP"/>
                         <outlet property="txtAnimo" destination="h52-4w-8U1" id="HeX-hO-xLs"/>
@@ -172,7 +173,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0v8-Ja-Scy" kind="presentation" id="0kf-p1-CzX"/>
+                                    <segue destination="taL-mY-Jyt" kind="presentation" id="8NL-ya-XrP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -213,7 +214,4 @@
         <image name="camara.png" width="180" height="180"/>
         <image name="finder.png" width="256" height="256"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="0kf-p1-CzX"/>
-    </inferredMetricsTieBreakers>
 </document>

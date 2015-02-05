@@ -45,6 +45,14 @@
         // Lo cargamos desde la BD
         [self loadInfoToEdit];
     }
+
+    // Si es un alta, ocultamos el botòn de ver video ... si no lo es lo mostramos
+    if (self.recordIDToEdit == -1) {
+        self.btnMostrarVideo.hidden = YES;
+    } else {
+        self.btnMostrarVideo.hidden = NO;
+    }
+    
     
 }
 
@@ -72,45 +80,59 @@
 
 
 - (IBAction)saveInfo:(id)sender {
-
-    // 1. Preparamos la consulta
-    // Como esta pantalla se usarà para dar de alta y modificar, usaremos una propiedad para saber si ya existe un ID
-    // Si la propiedad recordIDToEdit tiene un valor diferente de -1, entonces es un cambio y la consulta debe ser un update.   De otra forma es una alta y la consulta debe ser un insert
-    NSString *query;
     
-    if (self.recordIDToEdit == -1) {
-        query = [NSString stringWithFormat:@"insert into datos( id, nombre, animo, link, foto ) values(null, '%@', '%@', '%@', nil)", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text ];
+    // Verificamos que todos los campos tengan informaciòn:
+    if ( self.txtNombre.text.length == 0 || self.txtAnimo.text.length == 0 || self.txtLink.text.length == 0 ) {
         
-    }
-    else{
-        query = [NSString stringWithFormat:@"update datos set nombre='%@', animo='%@', link='%@' where id=%d", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text, self.recordIDToEdit ];
-    }
-    
-    //NSLog(@"%@", query );
-    
-    
-    // Ejecutamos la consulta
-    [self.dbManager executeQuery:query];
-    
-    
-    // Como no encontrè como grabar dentro del mismo insert o update usando executeQuery, lo hacemos por separado usando prepared statements solo para la imagen
-    
-    
-    
-    // Si la consulta fué exitosa, regresamos al view controller principal
-    if (self.dbManager.affectedRows != 0) {
-        NSLog(@"Consulta exitosa. Affected rows = %d", self.dbManager.affectedRows);
+        // Avisamos que falta informaciòn
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WARNING"
+                                                        message:@"All the fields are mandatory"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
         
-        // Informa al "delegate" que la ediciòn ha terminado
-        [self.delegate editingInfoWasFinished];
+    } else {
+        
+   
+        // 1. Preparamos la consulta
+        // Como esta pantalla se usarà para dar de alta y modificar, usaremos una propiedad para saber si ya existe un ID
+        // Si la propiedad recordIDToEdit tiene un valor diferente de -1, entonces es un cambio y la consulta debe ser un update.   De otra forma es una alta y la consulta debe ser un insert
+        NSString *query;
+        
+        if (self.recordIDToEdit == -1) {
+            query = [NSString stringWithFormat:@"insert into datos( id, nombre, animo, link, foto ) values(null, '%@', '%@', '%@', nil)", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text ];
+            
+        } else {
+            query = [NSString stringWithFormat:@"update datos set nombre='%@', animo='%@', link='%@' where id=%d", self.txtNombre.text, self.txtAnimo.text, self.txtLink.text, self.recordIDToEdit ];
+        }
+    
+        //NSLog(@"%@", query );
+    
+    
+        // Ejecutamos la consulta
+        [self.dbManager executeQuery:query];
+    
+    
+        // Como no encontrè como grabar dentro del mismo insert o update usando executeQuery, lo hacemos por separado usando prepared statements solo para la imagen
+    
+    
+    
+        // Si la consulta fué exitosa, regresamos al view controller principal
+        if (self.dbManager.affectedRows != 0) {
+            NSLog(@"Consulta exitosa. Affected rows = %d", self.dbManager.affectedRows);
+        
+            // Informa al "delegate" que la ediciòn ha terminado
+            [self.delegate editingInfoWasFinished];
         
         // Regresamos al view controller
-        [self.navigationController popViewControllerAnimated:YES];
-    // Si no fué exitosa, avisamos que hubo un error
-    } else {
-        NSLog(@"No pudo ejecutarse la consulta.");
-    }
+            [self.navigationController popViewControllerAnimated:YES];
+        // Si no fué exitosa, avisamos que hubo un error
+        } else {
+            NSLog(@"No pudo ejecutarse la consulta.");
+        }
 
+    }
 }
 
 // Cuando modifiquemos/visualicemos informaciòn, la cargamos desde la BD a los campos de texto
@@ -126,6 +148,10 @@
     self.txtNombre.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"nombre"]];
     self.txtAnimo.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"animo"]];
     self.txtLink.text = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"link"]];
+    
+    // Para la variable
+    strLink = [[results objectAtIndex:0] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"link"]];
+    
 }
 
 

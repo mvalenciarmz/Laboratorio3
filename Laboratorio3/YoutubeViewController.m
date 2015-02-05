@@ -8,6 +8,8 @@
 
 #import "YoutubeViewController.h"
 
+NSString *strLink;
+
 @interface YoutubeViewController ()
 
 @end
@@ -18,7 +20,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *url= [NSURL URLWithString:@"https://www.youtube.com/watch?v=x_zAvpMy1r4"];
+    NSURL *url= [NSURL URLWithString:strLink];
+    
+    NSLog(@"%@", strLink);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
