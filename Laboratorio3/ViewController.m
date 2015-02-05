@@ -115,11 +115,18 @@
     NSInteger indexOfNombre = [self.dbManager.arrColumnNames indexOfObject:@"nombre"];
     NSInteger indexOfAnimo = [self.dbManager.arrColumnNames indexOfObject:@"animo"];
 //    NSInteger indexOfLink = [self.dbManager.arrColumnNames indexOfObject:@"link"];
+    NSInteger indexOfFoto = [self.dbManager.arrColumnNames indexOfObject:@"foto"];
     
     // ponemos cada dato cargado en la etiqueta apropiada dentro de la celda
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [[self.arrDatos objectAtIndex:indexPath.row] objectAtIndex:indexOfNombre]];
     
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Estado de ánimo : %@", [[self.arrDatos objectAtIndex:indexPath.row] objectAtIndex:indexOfAnimo]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Se siente: %@", [[self.arrDatos objectAtIndex:indexPath.row] objectAtIndex:indexOfAnimo]];
+    
+    // Por si no trae foto, para que no truene ...
+    if ( [[self.arrDatos objectAtIndex:indexPath.row] objectAtIndex:indexOfFoto] != @"" ) {
+        cell.imageView.image = [UIImage imageWithData:[[self.arrDatos objectAtIndex:indexPath.row] objectAtIndex:indexOfFoto] ];
+    }
+    
     
     return cell;
 }

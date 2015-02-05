@@ -13,6 +13,7 @@
 
 // Propiedades
 @property (weak, nonatomic) IBOutlet UITableView *tblDatos;
+@property (weak, nonatomic) IBOutlet UIImageView *imgFotoEnTabla;
 
 
 // Acciones
