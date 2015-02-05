@@ -1,9 +1,9 @@
 //
-//  DBManager.h
-//  SQLite3DBSample
+//  DBManager.m
+//  Laboratorio3
 //
-//  Created by Gabriel Theodoropoulos on 25/6/14.
-//  Copyright (c) 2014 Appcoda. All rights reserved.
+//  Created by Eleazar Garcia on 03/02/15.
+//  Copyright (c) 2015 Marcos. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
