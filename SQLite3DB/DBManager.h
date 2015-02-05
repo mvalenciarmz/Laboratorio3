@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Marcos. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
 
 @interface DBManager : NSObject
