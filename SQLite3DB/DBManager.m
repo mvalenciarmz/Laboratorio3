@@ -201,6 +201,7 @@
 }
 
 
+
 // Funcion para ejecutar una consulta tipo SELECT y regresar un array con la información
 -(NSArray *)loadDataFromDB:(NSString *)query {
     
