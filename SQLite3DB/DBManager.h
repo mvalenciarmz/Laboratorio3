@@ -9,6 +9,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface DBManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *arrColumnNames;
